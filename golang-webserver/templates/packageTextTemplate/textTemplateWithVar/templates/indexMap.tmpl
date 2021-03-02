@@ -1,0 +1,24 @@
+<!DOCTYPEhtml>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hello There!</title>
+</head>
+<body>
+<h1>Mister Pressly</h1>
+{{$data := .}}
+<p>Basic range</p>
+<ul>
+  {{range $data}}
+  <li>{{.}}</li>
+  {{end}}
+</ul>
+
+<p>Index Range</p>
+<ul>
+  {{range $key, $value := $data}}
+  <li> [{{$key}}] = {{$value}} </li>
+  {{end}}
+</ul>
+</body>
+</html>

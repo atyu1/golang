@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hello There!</title>
+</head>
+<body>
+
+  <!-- Put your code here -->
+
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Zip</th>
+      <th>Region</th>
+    </tr>
+
+        {{range .}}
+            <tr>
+      <td>{{.Name}}</td>
+      <td>{{.Address}}</td>
+      <td>{{.City}}</td>
+      <td>{{.Zip}}</td>
+      <td>R{{.Region}}</td>
+          </tr>
+        {{end}}
+
+
+  </table>
+
+
+
+</body>
+</html>
