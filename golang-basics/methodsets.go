@@ -26,9 +26,9 @@ func main() {
 		Name: "John Hendricks",
 		Age:  34,
 	}
-  //Dont work
+	//Dont work
 	//saySomething(p1)
 
-  // Works
+	// Works
 	saySomething(&p1)
 }

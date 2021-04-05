@@ -75,4 +75,38 @@ func main() {
 	fmt.Println("myy:", myy)
 	fmt.Println("myz:", myz)
 
+	/*
+			golang-basics % go run slices.go
+		Print globalX:  [1 0 0 3 0 5]
+		Print 3rd item:  0
+		Is the x empty?  true
+		Lenght of slice globalX:  6
+		Lenght of slice x:  0
+		Adding values to the slice x...
+		All elements in x now:  [1 0 0 3 0 5]
+		Getting capacity and lenght of z
+		values, capacity, length
+		[1 2 3] 3 3
+		[1 2 3 4] 4 6
+		[1 2 3 4 5] 5 6
+		[1 2 3 4 5 6] 6 6
+		[1 2 3 4 5 6 7] 7 12
+		[1 2 3 4 5 6 7 8] 8 12
+		[1 2 3 4 5 6 7 8 9] 9 12
+		[1 2 3 4 5 6 7 8 9 10] 10 12
+		[1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17] 17 24
+		Getting capacity and lenght of numbers (maked for 5 elem)
+		values, capacity, length
+		[0 0 0 0 0] 5 5
+		Behaviour after append
+		[0 0 0 0 0 13] 6 10
+		Assigning slices are keeping capacity and append behaves strange
+		cap myx, cap myy, cap myz
+		5 5 3
+		cap myx, cap myy, cap myz
+		5 5 3
+		myx: [1 2 30 40 70]
+		myy: [1 2 30 40 70]
+		myz: [30 40 70]
+	*/
 }

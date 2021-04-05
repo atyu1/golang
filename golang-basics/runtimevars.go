@@ -1,11 +1,11 @@
 package main
 
 import (
-  "fmt"
-  "runtime"
+	"fmt"
+	"runtime"
 )
 
 func main() {
-  fmt.Println("OS:", runtime.GOOS)
-  fmt.Println("Arch:", runtime.GOARCH)
+	fmt.Println("OS:", runtime.GOOS)
+	fmt.Println("Arch:", runtime.GOARCH)
 }
