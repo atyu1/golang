@@ -1,4 +1,4 @@
-gpackage main
+package main
 
 import "fmt"
 
