@@ -2,16 +2,30 @@ package renders
 
 import (
 	"bytes"
+	"golanglearning/modern-webapps/ch2_basicwebapp/4renderedtemplates/pkg/config"
+	"golanglearning/modern-webapps/ch2_basicwebapp/4renderedtemplates/pkg/models"
 	"html/template"
 	"log"
 	"net/http"
 	"path/filepath"
 )
 
-func RenderTemplate(w http.ResponseWriter, tmpl string) {
-	tc, err := createTemplateCache()
-	if err != nil {
-		log.Fatal(err)
+var app *config.AppConfig
+
+func NewTemplates(a *config.AppConfig) {
+	app = a
+}
+
+func AddDefaultData(td *models.TemplateData) *models.TemplateData {
+	return td
+}
+
+func RenderTemplate(w http.ResponseWriter, tmpl string, td *models.TemplateData) {
+	var tc map[string]*template.Template
+	if app.UseCache {
+		tc = app.TemplateCache
+	} else {
+		tc, _ = CreateTemplateCache()
 	}
 
 	t, ok := tc[tmpl]
@@ -20,18 +34,20 @@ func RenderTemplate(w http.ResponseWriter, tmpl string) {
 	}
 
 	buf := new(bytes.Buffer)
-	err = t.Execute(buf, nil)
+
+	td = AddDefaultData(td)
+	err := t.Execute(buf, td)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	_, err := buf.WriteTo(w)
+	_, err = buf.WriteTo(w)
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func createTemplateCache() (map[string]*template.Template, error) {
+func CreateTemplateCache() (map[string]*template.Template, error) {
 	myCache := map[string]*template.Template{}
 
 	pages, err := filepath.Glob("./templates/*page.tmpl.html")
@@ -59,6 +75,6 @@ func createTemplateCache() (map[string]*template.Template, error) {
 		}
 
 		myCache[name] = ts
-		return myCache, nil
 	}
+	return myCache, nil
 }
