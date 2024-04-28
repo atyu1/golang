@@ -1,9 +1,9 @@
 package main
 
 import (
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/config"
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/handlers"
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/renders"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/config"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/handlers"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/renders"
 	"log"
 	"net/http"
 	"time"
@@ -13,13 +13,20 @@ import (
 
 const portNumber = ":8080"
 
+var app config.AppConfig
+var session *scs.SessionManager
+
 func main() {
-	var app config.AppConfig
-	session := scs.New()
+
+	app.InProduction = false
+
+	session = scs.New()
 	session.Lifetime = 24 * time.Hour
 	session.Cookie.Persist = true
 	session.Cookie.SameSite = http.SameSiteLaxMode
-	session.Cookie.Secure = false
+	session.Cookie.Secure = app.InProduction //Set in prod true
+
+	app.Session = session
 
 	tc, err := renders.CreateTemplateCache()
 

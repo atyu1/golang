@@ -2,8 +2,8 @@ package renders
 
 import (
 	"bytes"
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/config"
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/models"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/config"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/models"
 	"html/template"
 	"log"
 	"net/http"

@@ -1,9 +1,9 @@
 package handlers
 
 import (
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/config"
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/models"
-	"golanglearning/modern-webapps/ch2_basicwebapp/5chiroute/pkg/renders"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/config"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/models"
+	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/renders"
 	"net/http"
 )
 
@@ -25,6 +25,9 @@ func NewHandlers(r *Repository) {
 
 // Home is the home page handler
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
+	remoteIp := r.RemoteAddr
+	m.App.Session.Put(r.Context(), "RemoteIP", remoteIp)
+
 	renders.RenderTemplate(w, "home.page.tmpl.html", &models.TemplateData{})
 }
 
@@ -32,6 +35,9 @@ func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
 	stringmap := map[string]string{}
 	stringmap["test"] = "Test Data from Template Variable"
+
+	remoteIP := m.App.Session.GetString(r.Context(), "RemoteIP")
+	stringmap["remote_ip"] = remoteIP
 
 	renders.RenderTemplate(w, "about.page.tmpl.html", &models.TemplateData{
 		StringMap: stringmap,
