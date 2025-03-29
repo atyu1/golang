@@ -1,9 +1,9 @@
 package main
 
 import (
+	"golanglearning/1cookies/pkg/handlers"
+	"golanglearning/1cookies/pkg/renders"
 	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/config"
-	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/handlers"
-	"golanglearning/modern-webapps/ch5_cookies/1cookies/pkg/renders"
 	"log"
 	"net/http"
 	"time"
